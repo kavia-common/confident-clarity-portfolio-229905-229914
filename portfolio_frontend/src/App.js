@@ -1,47 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+
+import TopNav from "./components/TopNav";
+import Home from "./sections/Home";
+import About from "./sections/About";
+import Experience from "./sections/Experience";
+import Work from "./sections/Work";
+import Experiments from "./sections/Experiments";
+import Services from "./sections/Services";
+import Footer from "./sections/Footer";
 
 // PUBLIC_INTERFACE
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
+    // Keep a consistent theme attribute for any future theme expansion.
+    document.documentElement.setAttribute("data-theme", "light");
+  }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <a className="skiplink" href="#home">
+        Skip to content
+      </a>
+
+      <TopNav />
+
+      <main>
+        <Home />
+        <About />
+        <Experience />
+        <Work />
+        <Experiments />
+        <Services />
+      </main>
+
+      <Footer />
     </div>
   );
 }
